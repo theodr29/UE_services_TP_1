@@ -83,6 +83,83 @@ paths:
         explode: false
         schema:
           type: string
+      - name: username
+        in: body
+        description: User name
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Details of the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: User id already exists
+          
+  /users/editLastUpdated/{userid}:
+    put:
+      tags:
+      - admins
+      summary: Update Last Updated attribute of specified user
+      description: Update Last Updated attribute of specified user
+      operationId: edit_lastupdated
+      parameters:
+      - name: userid
+        in: path
+        description: User ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: lastupdated
+        in: body
+        description: timestamp
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Details of updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: bad input parameter
+
+  /users/delete/{userid}:
+    delete:
+      tags:
+      - admins
+      summary: delete specified user
+      description: delete specified user
+      operationId: delete_user
+      parameters:
+      - name: userid
+        in: path
+        description: User ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Details of deleted user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: bad input parameter
 
       
 components:
