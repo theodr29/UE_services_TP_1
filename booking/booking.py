@@ -28,6 +28,17 @@ def get_booking_for_user(userid):
       
    return make_response(jsonify({"error":"User not found"}), 400)
 
+@app.route('/bookings/users/<userid>', methods=['POST'])
+def add_user(userid):
+   for booking in bookings:
+      if str(booking["userid"]) == str(userid):
+         return make_response(jsonify({"error": "User ID already exists"}), 409)
+   
+   user = {'userid': userid, 'dates': []}
+   bookings.append(user)
+   return make_response(jsonify(user), 200)
+
+
 @app.route('/bookings/<userid>', methods=["POST"])
 def add_booking_byuser(userid):
    req = request.get_json()

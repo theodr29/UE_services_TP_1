@@ -44,7 +44,7 @@ paths:
   /users/{userid}:
     get:
       tags:
-        - developpers
+        - developers
       summary: get the JSON of a user from the userid
       description: By passing in an existing userid, you can get the details of a user
       operationId: gets_user_by_id
@@ -100,14 +100,14 @@ paths:
                 $ref: '#/components/schemas/User'
         "400":
           description: User id already exists
-          
-  /users/editLastUpdated/{userid}:
-    put:
+
+  /users/{userid}/movies:
+    get:
       tags:
-      - admins
-      summary: Update Last Updated attribute of specified user
-      description: Update Last Updated attribute of specified user
-      operationId: edit_lastupdated
+        - developers
+      summary: get the JSON of a user's movies that he booked from the userid
+      description: By passing in an existing userid, you can get the details of a user's booked movies
+      operationId: get_user_movies_by_id
       parameters:
       - name: userid
         in: path
@@ -117,25 +117,16 @@ paths:
         explode: false
         schema:
           type: string
-      - name: lastupdated
-        in: body
-        description: timestamp
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
       responses:
         "200":
-          description: Details of updated user
+          description: Details of the user's movies
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/AllMovies'
         "400":
           description: bad input parameter
 
-  /users/delete/{userid}:
     delete:
       tags:
       - admins
@@ -160,6 +151,33 @@ paths:
                 $ref: '#/components/schemas/User'
         "400":
           description: bad input parameter
+          
+  /users/editLastUpdated/{userid}:
+    put:
+      tags:
+      - admins
+      summary: Update Last Updated attribute of specified user
+      description: Update Last Updated attribute of specified user
+      operationId: edit_lastupdated
+      parameters:
+      - name: userid
+        in: path
+        description: User ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Details of updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: bad input parameter
+    
 
       
 components:
@@ -189,3 +207,33 @@ components:
         last_active:
           type: integer
           example: 1360031325
+    AllMovies:
+      type: object
+      required:
+        - movies
+      properties:
+        movies:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/MovieItem'
+    MovieItem:
+      type: object
+      required:
+        - title
+        - rating
+        - director
+        - id
+      properties:
+        title:
+          type: string
+          example: The Martian
+        rating:
+          type: integer
+          example: 7
+        director:
+          type: string
+          example: Paul McGuigan
+        id:
+          type: string
+          example: 39ab85e5-5e8e-4dc5-afea-65dc368bd7ab

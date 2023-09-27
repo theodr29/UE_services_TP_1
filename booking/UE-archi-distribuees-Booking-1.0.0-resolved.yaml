@@ -101,6 +101,32 @@ paths:
                 $ref: '#/components/schemas/BookingsUser'
         "409":
           description: an existing item already exists
+  /bookings/users/{userid}:
+    post:
+      tags:
+      - admins
+      summary: add a user to the booking service
+      description: Adds a user to the booking service
+      operationId: add_booking_user
+      parameters:
+      - name: userid
+        in: path
+        description: User ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingsUser'
+        "409":
+          description: an existing item already exists
+
 components:
   schemas:
     AllBookings:
