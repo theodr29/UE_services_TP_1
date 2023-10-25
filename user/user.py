@@ -69,7 +69,7 @@ def add_user(userid):
         if str(user["id"]) == str(userid):
             return make_response(jsonify({"error": "User already exists"}), 400)
 
-    # If not we dd the new user to the data
+    # If not we add the new user to the data
     user = request.json
     user["id"] = userid
     user["last_active"] = int(time.time())

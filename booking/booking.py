@@ -68,7 +68,7 @@ def add_booking_byuser(userid):
     for booking in bookings:
         # We check if the user exists
         if str(userid) == booking["userid"]:
-            # We retriev the show data from the showtime service
+            # We retrieve the show data from the showtime service
             showtime_port = 3202
             showtimes = requests.get(
                 f"http://showtime:{showtime_port}/showmovies/{req['date']}"
@@ -99,7 +99,7 @@ def add_booking_byuser(userid):
                 return make_response(jsonify(booking), 200)
             else:
                 return make_response(
-                    jsonify({"error": "This booking already exists"}), 409
+                    jsonify({"error": "This showtime does not exists"}), 409
                 )
 
     return make_response(jsonify({"error": "Userid not found"}), 409)

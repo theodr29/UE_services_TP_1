@@ -83,14 +83,14 @@ paths:
         explode: false
         schema:
           type: string
-      - name: username
+      - name: name
         in: body
         description: User name
         required: true
         style: simple
         explode: false
         schema:
-          type: string
+          type: UserName
       responses:
         "200":
           description: Details of the user
@@ -100,6 +100,31 @@ paths:
                 $ref: '#/components/schemas/User'
         "400":
           description: User id already exists
+
+    delete:
+      tags:
+      - admins
+      summary: delete specified user
+      description: delete specified user
+      operationId: delete_user
+      parameters:
+      - name: userid
+        in: path
+        description: User ID.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Details of deleted user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: bad input parameter
 
   /users/{userid}/movies:
     get:
@@ -124,31 +149,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllMovies'
-        "400":
-          description: bad input parameter
-
-    delete:
-      tags:
-      - admins
-      summary: delete specified user
-      description: delete specified user
-      operationId: delete_user
-      parameters:
-      - name: userid
-        in: path
-        description: User ID.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      responses:
-        "200":
-          description: Details of deleted user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
         "400":
           description: bad input parameter
           
@@ -207,6 +207,14 @@ components:
         last_active:
           type: integer
           example: 1360031325
+    UserName:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Jim Halpert"
     AllMovies:
       type: object
       required:
