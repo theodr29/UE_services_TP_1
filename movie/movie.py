@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import json
 import sys
+import requests
 from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
@@ -8,9 +9,42 @@ app = Flask(__name__)
 PORT = 3200
 HOST = "0.0.0.0"
 
-with open("{}/databases/movies.json".format("."), "r") as jsf:
-    movies = json.load(jsf)["movies"]
+# ! api_key
+api_key = "3a3010a6e7d6367c43e40610fb46c871"
+api_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTMwMTBhNmU3ZDYzNjdjNDNlNDA2MTBmYjQ2Yzg3MSIsInN1YiI6IjY1MmVhM2E0ZWE4NGM3MDEyZDcxODNkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.T3rxvBJL2zSala4u4ExBfkYobuH_itQguwN0L-nXfmc"
+if not api_key or not api_token:
+    raise ValueError("Please provide an API key and a token")
 
+def get_movies():
+    """This function gets the movies from the API and returns a dict"""
+    # First we retrieve all movies data from the API
+    url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
+
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {api_token}"
+    }
+
+    response = requests.get(url, headers=headers).json()["results"]
+
+    movies = []
+    for element in response:
+        movie = {}
+        movie["title"] = element["title"]
+        movie["id"] = element["id"]
+        movie["rating"] = element["vote_average"]
+        # We must get the director from the API
+        url2 = f"https://api.themoviedb.org/3/movie/{movie['id']}/credits?language=en-US"
+
+        response2 = requests.get(url2, headers=headers)
+        response2 = response2.json()["crew"]
+        for crew in response2:
+            if crew["job"] == "Director":
+                movie["director"] = crew["name"]
+                break
+
+        movies.append(movie)
+    return movies
 
 # root message
 @app.route("/", methods=["GET"])
@@ -38,7 +72,7 @@ def template():
 def get_json():
     """Route that returns the list of all the movies"""
 
-    res = make_response(jsonify(movies), 200)
+    res = make_response(jsonify(get_movies()), 200)
     return res
 
 
