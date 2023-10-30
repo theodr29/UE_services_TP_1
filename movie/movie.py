@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import json
+import os 
 import sys
 import requests
 from werkzeug.exceptions import NotFound
@@ -46,6 +47,18 @@ def get_movies():
         movies.append(movie)
     return movies
 
+def save_movies(movies):
+    """This function saves the movies in a json file"""
+    with open(__file__ + "/../databases/movies.json", "w") as f:
+        json.dump(movies, f)
+
+def load_movies():
+    """This function loads the movies from a json file"""
+    with open(__file__ + "/../databases/movies.json", "r") as f:
+        return json.load(f)
+    
+movies = load_movies()
+
 # root message
 @app.route("/", methods=["GET"])
 def home():
@@ -72,7 +85,7 @@ def template():
 def get_json():
     """Route that returns the list of all the movies"""
 
-    res = make_response(jsonify(get_movies()), 200)
+    res = make_response(jsonify(movies), 200)
     return res
 
 
@@ -185,4 +198,7 @@ def del_movie(movieid):
 if __name__ == "__main__":
     # p = sys.argv[1]
     print("Server running in port %s" % (PORT))
+    movies = get_movies()
+    save_movies(movies)
+    movies = load_movies()
     app.run(host=HOST, port=PORT, debug=True)
