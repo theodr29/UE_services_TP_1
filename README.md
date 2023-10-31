@@ -10,7 +10,8 @@ TP vert :
 - Appel des services Booking et Movie dans l'endpoint get_user_movie_by_id
 
 TP rouge : 
-- Non implémenté
+- Supression de la base de donnée intiale du service Movie
+- Connexion à l'API TMDB pour récupération des données de films
 
 
 ## Utilisation

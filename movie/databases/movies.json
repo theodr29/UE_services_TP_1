@@ -1,46 +1,122 @@
-{
-  "movies": [
+[
     {
-      "title": "The Good Dinosaur",
-      "rating": 7.4,
-      "director": "Peter Sohn",
-      "id": "720d006c-3a57-4b6a-b18f-9b713b073f3c"
+        "title": "Five Nights at Freddy's",
+        "id": 507089,
+        "rating": 8.446,
+        "director": "Emma Tammi"
     },
     {
-      "title": "The Martian",
-      "rating": 8.2,
-      "director": "Ridley Scott",
-      "id": "a8034f44-aee4-44cf-b32c-74cf452aaaae"
+        "title": "Expend4bles",
+        "id": 299054,
+        "rating": 6.483,
+        "director": "Scott Waugh"
     },
     {
-      "title": "The Night Before",
-      "rating": 7.4,
-      "director": "Jonathan Levine",
-      "id": "96798c08-d19b-4986-a05d-7da856efb697"
+        "title": "The Equalizer 3",
+        "id": 926393,
+        "rating": 7.315,
+        "director": "Antoine Fuqua"
     },
     {
-      "title": "Creed",
-      "rating": 8.8,
-      "director": "Ryan Coogler",
-      "id": "267eedb8-0f5d-42d5-8f43-72426b9fb3e6"
+        "title": "Sound of Freedom",
+        "id": 678512,
+        "rating": 8.139,
+        "director": "Alejandro G\u00f3mez Monteverde"
     },
     {
-      "title": "Victor Frankenstein",
-      "rating": 6.4,
-      "director": "Paul McGuigan", 
-      "id": "7daf7208-be4d-4944-a3ae-c1c2f516f3e6"
+        "title": "Gran Turismo",
+        "id": 980489,
+        "rating": 8.038,
+        "director": "Neill Blomkamp"
     },
     {
-      "title": "The Danish Girl",
-      "rating": 5.3,
-      "director": "Tom Hooper",
-      "id": "276c79ec-a26a-40a6-b3d3-fb242a5947b6"
+        "title": "Retribution",
+        "id": 762430,
+        "rating": 6.986,
+        "director": "Nimr\u00f3d Antal"
     },
     {
-      "title": "Spectre",
-      "rating": 7.1,
-      "director": "Sam Mendes",
-      "id": "39ab85e5-5e8e-4dc5-afea-65dc368bd7ab"
+        "title": "The Nun II",
+        "id": 968051,
+        "rating": 6.979,
+        "director": "Michael Chaves"
+    },
+    {
+        "title": "Saw X",
+        "id": 951491,
+        "rating": 7.308,
+        "director": "Kevin Greutert"
+    },
+    {
+        "title": "The Exorcist: Believer",
+        "id": 807172,
+        "rating": 6.1,
+        "director": "David Gordon Green"
+    },
+    {
+        "title": "Talk to Me",
+        "id": 1008042,
+        "rating": 7.183,
+        "director": "Michael Philippou"
+    },
+    {
+        "title": "PAW Patrol: The Mighty Movie",
+        "id": 893723,
+        "rating": 7.0,
+        "director": "Cal Brunker"
+    },
+    {
+        "title": "Blue Beetle",
+        "id": 565770,
+        "rating": 7.048,
+        "director": "\u00c1ngel Manuel Soto"
+    },
+    {
+        "title": "Coco",
+        "id": 354912,
+        "rating": 8.22,
+        "director": "Lee Unkrich"
+    },
+    {
+        "title": "Barbie",
+        "id": 346698,
+        "rating": 7.222,
+        "director": "Greta Gerwig"
+    },
+    {
+        "title": "Scarygirl",
+        "id": 502345,
+        "rating": 7.258,
+        "director": "Ricard Cuss\u00f3"
+    },
+    {
+        "title": "57 Seconds",
+        "id": 937249,
+        "rating": 5.674,
+        "director": "Rusty Cundieff"
+    },
+    {
+        "title": "Muzzle",
+        "id": 939335,
+        "rating": 6.433,
+        "director": "John Stalberg Jr."
+    },
+    {
+        "title": "Desperation Road",
+        "id": 1039690,
+        "rating": 7.529,
+        "director": "Nadine Crocker"
+    },
+    {
+        "title": "Once Upon a Studio",
+        "id": 1139087,
+        "rating": 8.6,
+        "director": "Dan Abraham"
+    },
+    {
+        "title": "Dark Harvest",
+        "id": 675531,
+        "rating": 5.901,
+        "director": "David Slade"
     }
-  ]
-}
+]

@@ -17,8 +17,8 @@ if not api_key or not api_token:
     raise ValueError("Please provide an API key and a token")
 
 def get_movies():
-    """This function gets the movies from the API and returns a dict"""
-    # First we retrieve all movies data from the API
+    """This function gets the movies from the API and returns a list of dicts"""
+
     url = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
 
     headers = {
@@ -30,10 +30,12 @@ def get_movies():
 
     movies = []
     for element in response:
+        # We retrieve the title, the id and the rating
         movie = {}
         movie["title"] = element["title"]
         movie["id"] = element["id"]
         movie["rating"] = element["vote_average"]
+        
         # We must get the director from the API
         url2 = f"https://api.themoviedb.org/3/movie/{movie['id']}/credits?language=en-US"
 
@@ -49,14 +51,19 @@ def get_movies():
 
 def save_movies(movies):
     """This function saves the movies in a json file"""
-    with open(__file__ + "/../databases/movies.json", "w") as f:
+    if not os.path.exists("/databases/"):
+        os.makedirs("/databases/")
+    with open("/databases/movies.json", "w") as f:
         json.dump(movies, f)
 
 def load_movies():
     """This function loads the movies from a json file"""
-    with open(__file__ + "/../databases/movies.json", "r") as f:
+    with open("/databases/movies.json", "r") as f:
         return json.load(f)
     
+# ? Loading and caching movies from API
+movies = get_movies()
+save_movies(movies)
 movies = load_movies()
 
 # root message
@@ -198,7 +205,4 @@ def del_movie(movieid):
 if __name__ == "__main__":
     # p = sys.argv[1]
     print("Server running in port %s" % (PORT))
-    movies = get_movies()
-    save_movies(movies)
-    movies = load_movies()
     app.run(host=HOST, port=PORT, debug=True)
