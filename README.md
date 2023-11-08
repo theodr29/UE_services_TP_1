@@ -10,7 +10,7 @@ TP vert :
 - Appel des services Booking et Movie dans l'endpoint get_user_movie_by_id
 
 TP rouge : 
-- Non implémenté
+- Non implémenté (voir la branche dédiée)
 
 
 ## Utilisation
